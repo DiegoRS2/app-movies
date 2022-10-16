@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "796195446728",
+    "project_id": "app-filmes-mobile",
+    "storage_bucket": "app-filmes-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796195446728:android:beea31e7d7b1d5c20eeafd",
+        "android_client_info": {
+          "package_name": "com.app.appfilmes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796195446728-dh2njltp6mp03vtiuee0lf35430v0o6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy7tIMJYarLXdM7pWmrR0UebjkPQffqCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796195446728-dh2njltp6mp03vtiuee0lf35430v0o6i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "796195446728-t78a9c6s3vpqmfrjo4eg1dojp9c534jn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com-app.app-filmes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796195446728:android:07cb499e71a58f640eeafd",
+        "android_client_info": {
+          "package_name": "com.example.app_filmes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796195446728-dh2njltp6mp03vtiuee0lf35430v0o6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy7tIMJYarLXdM7pWmrR0UebjkPQffqCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796195446728-dh2njltp6mp03vtiuee0lf35430v0o6i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "796195446728-t78a9c6s3vpqmfrjo4eg1dojp9c534jn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com-app.app-filmes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796195446728:android:f08b26ee143cd1bc0eeafd",
+        "android_client_info": {
+          "package_name": "com.example.filmes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796195446728-dh2njltp6mp03vtiuee0lf35430v0o6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy7tIMJYarLXdM7pWmrR0UebjkPQffqCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796195446728-dh2njltp6mp03vtiuee0lf35430v0o6i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "796195446728-t78a9c6s3vpqmfrjo4eg1dojp9c534jn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com-app.app-filmes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
