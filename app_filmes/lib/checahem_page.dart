@@ -20,7 +20,7 @@ class _ChecagemPageState extends State<ChecagemPage> {
   void initState() {
     super.initState();
      streamSubscription = FirebaseAuth.instance.authStateChanges().listen((event) {
-      // ignore: unnecessary_null_comparison
+    
       if(user == null){
         Navigator.pushReplacement(context, 
         MaterialPageRoute(
