@@ -18,35 +18,89 @@ class _LoginPage extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: _formKey,
-        child: Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'E-mail'),
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/login.png'), fit: BoxFit.cover), 
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 35, top: 130),
+              child: Text("Bem vindo!", style: TextStyle(
+                color: Colors.white,
+                fontSize: 33
+              ),),
+            ),
+            
+          SingleChildScrollView(
+             child: Container(
+              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.5, right: 35,left: 35),
+              child: Column(children: [
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    fillColor: Colors.grey.shade100,
+                    filled: true,
+                    hintText: 'Email',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Senha'),
-                    controller: _passwordController,
-                    keyboardType: TextInputType.text,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    fillColor: Colors.grey.shade100,
+                    filled: true,
+                    hintText: 'Senha',
+                    border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10))
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        login();
-                      },
-                      child: Text('Entrar')),
-                      TextButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: ((context) => CadastroPage())));
-                      }, child: Text('Criar Conta'))
-                ]),
-          ),
+                ),
+                SizedBox(height: 40,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Entrar', style: TextStyle(
+                      fontSize: 27, fontWeight: FontWeight.w700, color: Color(0xff4c505b),
+                    ),),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Color(0xff4c505b),
+                      child: IconButton(
+                        color: Colors.white,
+                        onPressed: () {
+                          login();
+                        },
+                        icon: Icon(Icons.arrow_forward),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  children: [
+                    TextButton(onPressed: (){
+                       Navigator.push(context, MaterialPageRoute(builder: ((context) => CadastroPage())));
+                    }, child: Text("Cadastrar-se", style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 18,
+                      color: Color(0xff4c505b)
+                    ),))
+                  ],
+                )
+
+              ]),
+            )
+        )],
         ),
       ),
     );

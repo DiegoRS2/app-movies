@@ -39,7 +39,6 @@ class _ChecagemPageState extends State<ChecagemPage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
