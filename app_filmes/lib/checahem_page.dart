@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:app_filmes/home_page.dart';
 import 'package:app_filmes/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lottie/lottie.dart';
+import 'package:lottie/lottie.dart';
 
 class ChecagemPage extends StatefulWidget {
   const ChecagemPage({super.key});
@@ -42,8 +45,12 @@ class _ChecagemPageState extends State<ChecagemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Lottie.network(
+          'https://assets5.lottiefiles.com/packages/lf20_itjl9rou.json'
+        ),
+    
       ),
     );
   }
