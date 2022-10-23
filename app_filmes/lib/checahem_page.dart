@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:app_filmes/home_page.dart';
 import 'package:app_filmes/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:lottie/lottie.dart';
 import 'package:lottie/lottie.dart';
 
 class ChecagemPage extends StatefulWidget {

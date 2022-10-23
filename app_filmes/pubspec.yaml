@@ -31,6 +31,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  tmdb_api:
+  google_fonts:
   http: ^0.13.3
   shared_preferences: ^2.0.6
 

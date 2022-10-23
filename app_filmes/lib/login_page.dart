@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _firebaseAuth = FirebaseAuth.instance;
@@ -19,7 +18,7 @@ class _LoginPage extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/login.png'), fit: BoxFit.cover), 
       ),
@@ -28,8 +27,8 @@ class _LoginPage extends State<LoginPage> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
-              child: Text("Bem vindo!", style: TextStyle(
+              padding: const EdgeInsets.only(left: 35, top: 130),
+              child: const Text("Bem vindo!", style: TextStyle(
                 color: Colors.white,
                 fontSize: 33
               ),),
@@ -49,7 +48,7 @@ class _LoginPage extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(10))
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 TextField(
@@ -63,34 +62,34 @@ class _LoginPage extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(10))
                   ),
                 ),
-                SizedBox(height: 40,),
+                const SizedBox(height: 40,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Entrar', style: TextStyle(
+                    const Text('Entrar', style: TextStyle(
                       fontSize: 27, fontWeight: FontWeight.w700, color: Color(0xff4c505b),
                     ),),
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor: Color(0xff4c505b),
+                      backgroundColor: const Color(0xff4c505b),
                       child: IconButton(
                         color: Colors.white,
                         onPressed: () {
                           login();
                         },
-                        icon: Icon(Icons.arrow_forward),
+                        icon: const Icon(Icons.arrow_forward),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Row(
                   children: [
                     TextButton(onPressed: (){
-                       Navigator.push(context, MaterialPageRoute(builder: ((context) => CadastroPage())));
-                    }, child: Text("Cadastrar-se", style: TextStyle(
+                       Navigator.push(context, MaterialPageRoute(builder: ((context) => const CadastroPage())));
+                    }, child: const Text("Cadastrar-se", style: TextStyle(
                       decoration: TextDecoration.underline,
                       fontSize: 18,
                       color: Color(0xff4c505b)
@@ -110,7 +109,7 @@ class _LoginPage extends State<LoginPage> {
     try {
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
-              email: _emailController.text, password: _passwordController.text);
+              email: _emailController.text.trim(), password: _passwordController.text.trim());
 
       if (userCredential != null) {
         Navigator.pushReplacement(

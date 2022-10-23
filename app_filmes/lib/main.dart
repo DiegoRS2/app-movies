@@ -1,6 +1,5 @@
 import 'package:app_filmes/checahem_page.dart';
 import 'package:app_filmes/firebase_options.dart';
-import 'package:app_filmes/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:app_filmes/firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
   
         primarySwatch: Colors.pink,
       ),
-      home: ChecagemPage(),
+      home: const ChecagemPage(),
     );
   }
 }

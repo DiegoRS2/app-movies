@@ -29,7 +29,7 @@ class _CadastroPageState extends State<CadastroPage> {
         body: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
+              padding: const EdgeInsets.only(left: 35, top: 100),
               child: const Text(
                 "Cadastrar",
                 style: TextStyle(color: Colors.white, fontSize: 33),
@@ -92,13 +92,13 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor: Color(0xff4c505b),
+                      backgroundColor:const Color(0xff4c505b),
                       child: IconButton(
                         color: Colors.white,
                         onPressed: () {
                           cadastra();
                         },
-                        icon: Icon(Icons.arrow_forward),
+                        icon: const Icon(Icons.arrow_forward),
                       ),
                     )
                   ],
@@ -142,7 +142,6 @@ class _CadastroPageState extends State<CadastroPage> {
   }
 
   navegar() {
-    print('escutou amigos');
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (builder) => const LoginPage()));
   }
@@ -153,6 +152,7 @@ class _CadastroPageState extends State<CadastroPage> {
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
 
+      // ignore: unnecessary_null_comparison
       if (userCredential != null) {
         userCredential.user!.updateDisplayName(_nomeController.text);
         Navigator.of(context).pushAndRemoveUntil(
