@@ -1,4 +1,5 @@
 import 'package:app_filmes/checahem_page.dart';
+import 'package:app_filmes/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,10 @@ class _CadastroPageState extends State<CadastroPage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(title: const Text(''),backgroundColor: Colors.transparent, elevation: 0),
+        appBar: AppBar(
+            title: const Text(''),
+            backgroundColor: Colors.transparent,
+            elevation: 0),
         body: Stack(
           children: [
             Container(
@@ -38,7 +42,7 @@ class _CadastroPageState extends State<CadastroPage> {
             SingleChildScrollView(
                 child: Container(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.5,
+                  top: MediaQuery.of(context).size.height * 0.4,
                   right: 35,
                   left: 35),
               child: Column(children: [
@@ -92,7 +96,7 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor:const Color(0xff4c505b),
+                      backgroundColor: const Color(0xff4c505b),
                       child: IconButton(
                         color: Colors.white,
                         onPressed: () {
@@ -112,38 +116,26 @@ class _CadastroPageState extends State<CadastroPage> {
         ),
       ),
     );
-
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text("Cadastro Usuário"),
-    //     ),
-    //     body: ListView(
-    //       padding: EdgeInsets.all(12),
-    //       children: [
-    //         TextFormField(
-    //           controller: _nomeController,
-    //           decoration: InputDecoration(label: Text("Nome")),
-    //         ),
-    //         TextFormField(
-    //           controller: _emailController,
-    //           decoration: InputDecoration(label: Text("E-mail")),
-    //         ),
-    //         TextFormField(
-    //           controller: _passwordController,
-    //           decoration: InputDecoration(label: Text("Senha")),
-    //         ),
-    //         ElevatedButton(
-    //             onPressed: () {
-    //               cadastra();
-    //             },
-    //             child: Text("Cadastrar"))
-    //       ],
-    //     ));
   }
 
   navegar() {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (builder) => const LoginPage()));
+  }
+
+  registraErros(String mensagem) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(mensagem.toString()),
+      backgroundColor: Colors.redAccent,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 100,
+          right: 20,
+          left: 20),
+    ));
   }
 
   cadastra() async {
@@ -156,36 +148,20 @@ class _CadastroPageState extends State<CadastroPage> {
       if (userCredential != null) {
         userCredential.user!.updateDisplayName(_nomeController.text);
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const ChecagemPage()),
+            MaterialPageRoute(builder: (context) => const HomePage()),
             (Route<dynamic> route) => false);
       }
     } on FirebaseAuthException catch (e) {
+      print(e.code);
+
       if (e.code.toString() == "weak-password") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text('Ops! Crie uma senha mais forte'),
-          backgroundColor: Colors.redAccent,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height - 100,
-              right: 20,
-              left: 20),
-        ));
+        registraErros('Ops! Crie uma senha mais forte');
       } else if (e.code.toString() == "email-already-in-use") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text('Ops! Este email já foi cadastrado'),
-          backgroundColor: Colors.redAccent,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height - 100,
-              right: 20,
-              left: 20),
-        ));
+        registraErros('Ops! Este email já foi cadastrado');
+      } else if (e.code.toString() == "invalid-email") {
+        registraErros('Ops! Email inválido');
+      }else if(e.code.toString() == "internal-error"){
+        registraErros("Ops! Parece que estão faltando alguns dados");
       }
     }
   }

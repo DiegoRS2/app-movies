@@ -105,6 +105,21 @@ class _LoginPage extends State<LoginPage> {
     );
   }
 
+  registraErros(String mensagem) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(mensagem.toString()),
+      backgroundColor: Colors.redAccent,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height - 100,
+          right: 20,
+          left: 20),
+    ));
+  }
+
   login() async {
     try {
       UserCredential userCredential =
@@ -118,41 +133,11 @@ class _LoginPage extends State<LoginPage> {
     } on FirebaseAuthException catch (e) {
       print(e.code.toString());
       if (e.code.toString() == "user-not-found") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Ops! Email inválido'),
-        backgroundColor: Colors.redAccent,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),),
-        margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 100,
-        right: 20,
-        left: 20),
-        ));
+        registraErros('Ops! Usuário não encontrado');
       } else if (e.code.toString() == "invalid-email") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Ops! Email inválido'),
-        backgroundColor: Colors.redAccent,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),),
-        margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 100,
-        right: 20,
-        left: 20),
-        ));
+        registraErros('Ops! Email inválido');
       } else if (e.code.toString() == "wrong-password") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('Ops! Senha inválida'),
-        backgroundColor: Colors.redAccent,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),),
-        margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height - 100,
-        right: 20,
-        left: 20),
-        ));
+        registraErros('Ops! Senha inválida');
       }
     }
   }
