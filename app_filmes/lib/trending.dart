@@ -33,37 +33,36 @@ class TrendingMovies extends StatelessWidget {
                                 // ignore: prefer_interpolation_to_compose_strings
                                 bannerUrl: 'https://image.tmdb.org/t/p/w500'+trending[index]['backdrop_path'],
                                 // ignore: prefer_interpolation_to_compose_strings
-                                posterUrl: 'https://image.tmdb.org/t/p/w500'+ trending[index]['poster_path'],
+                                posterUrl: 'https://image.tmdb.org/t/p/w500'+trending[index]['poster_path'],
                                 vote: trending[index]['vote_average'].toString(),
-                                launch_on: trending[index]['relase_date'])));
+                                launch_on: trending[index]['relase_date'] == null ? "teste": trending[index]['relase_date'].toString())));
                   },
-                  child: 
-                  trending[index]['title'] != null ?
-                  Container(
-                    width: 140,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      // ignore: prefer_interpolation_to_compose_strings
-                                      'https://image.tmdb.org/t/p/w500' +
-                                          trending[index]['poster_path']))),
-                        ),
-                        Container(
-                          child: Modifica_texto(
-                            text: trending[index]['title'] ?? 'Loading',
-                            color: Colors.white,
-                            size: null,
+                  child: trending[index]['title'] != null
+                      ? Container(
+                          width: 140,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            // ignore: prefer_interpolation_to_compose_strings
+                                            'https://image.tmdb.org/t/p/w500' +
+                                                trending[index]
+                                                    ['poster_path']))),
+                              ),
+                              Container(
+                                child: Modifica_texto(
+                                  text: trending[index]['title'] ?? 'Loading',
+                                  color: Colors.white,
+                                  size: null,
+                                ),
+                              )
+                            ],
                           ),
                         )
-                      ],
-                    ),
-                  ): Container(
-
-                  ),
+                      : Container(),
                 );
               }),
         )

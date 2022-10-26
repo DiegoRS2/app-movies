@@ -18,8 +18,13 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.black,
+      //  appBar: AppBar(
+      //       title: const Text(''),
+      //       backgroundColor: Colors.transparent,
+      //       ),
       body: Container(
         child: ListView(
           children: [
@@ -36,7 +41,7 @@ class Description extends StatelessWidget {
                   ),
                   Positioned(
                     bottom: 10,
-                    child: Modifica_texto(text: 'Average Rating' + vote, color: Colors.white, size: 18))
+                    child: Modifica_texto(text: 'classificação média ' + vote, color: Colors.white, size: 18))
                 ],
               ),
             ),
@@ -46,7 +51,7 @@ class Description extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.only(left: 10),
-              child: Modifica_texto(text:'Releasing On -'+  launch_on, size: 14, color: Colors.white,),
+              child: Modifica_texto(text:'Data de lançamento - '+  launch_on, size: 14, color: Colors.white,),
             ),
             Row(
               children: [

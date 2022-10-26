@@ -14,6 +14,7 @@ class _LoginPage extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _firebaseAuth = FirebaseAuth.instance;
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +54,24 @@ class _LoginPage extends State<LoginPage> {
                 ),
                 TextField(
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: _showPassword == false ? true: false,
+                  
                   decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
                     filled: true,
                     hintText: 'Senha',
                     border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10))
+                    borderRadius: BorderRadius.circular(10)),
+                    suffixIcon: GestureDetector(
+                      child: Icon(_showPassword == false ? Icons.visibility_off: Icons.visibility, color: Colors.grey,),
+                      onTap: (){
+                        setState(() {
+                          _showPassword = !_showPassword;
+                        });
+                      },
+                    ),
                   ),
+                  
                 ),
                 const SizedBox(height: 40,),
                 Row(
@@ -75,6 +86,7 @@ class _LoginPage extends State<LoginPage> {
                       child: IconButton(
                         color: Colors.white,
                         onPressed: () {
+                          
                           login();
                         },
                         icon: const Icon(Icons.arrow_forward),
@@ -103,6 +115,12 @@ class _LoginPage extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void httpJob(AnimationController controller) async {
+    controller.forward();
+    await Future.delayed(Duration(seconds: 3), () {});
+    controller.reset();
   }
 
   registraErros(String mensagem) {

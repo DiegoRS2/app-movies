@@ -17,6 +17,8 @@ class _CadastroPageState extends State<CadastroPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _firebaseAuth = FirebaseAuth.instance;
+  bool _showPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,13 +74,27 @@ class _CadastroPageState extends State<CadastroPage> {
                 ),
                 TextField(
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText:  _showPassword == false ? true: false,
                   decoration: InputDecoration(
-                      fillColor: Colors.grey.shade100,
-                      filled: true,
-                      hintText: 'Senha',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                    fillColor: Colors.grey.shade100,
+                    filled: true,
+                    hintText: 'Senha',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    suffixIcon: GestureDetector(
+                      child: Icon(
+                        _showPassword == false
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {
+                        setState(() {
+                          _showPassword = !_showPassword;
+                        });
+                      },
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 40,
@@ -102,6 +118,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         onPressed: () {
                           cadastra();
                         },
+                        
                         icon: const Icon(Icons.arrow_forward),
                       ),
                     )
@@ -160,7 +177,7 @@ class _CadastroPageState extends State<CadastroPage> {
         registraErros('Ops! Este email já foi cadastrado');
       } else if (e.code.toString() == "invalid-email") {
         registraErros('Ops! Email inválido');
-      }else if(e.code.toString() == "internal-error"){
+      } else if (e.code.toString() == "internal-error") {
         registraErros("Ops! Parece que estão faltando alguns dados");
       }
     }
