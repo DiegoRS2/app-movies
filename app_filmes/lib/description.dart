@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
+import 'package:date_format/date_format.dart';
+
 import 'package:flutter/material.dart';
 
 import 'Util/text.dart';
@@ -41,7 +45,7 @@ class Description extends StatelessWidget {
                   ),
                   Positioned(
                     bottom: 10,
-                    child: Modifica_texto(text: 'classificação média ' + vote, color: Colors.white, size: 18))
+                    child: Modifica_texto(text: 'classificação média ⭐' + vote, color: Colors.white, size: 18))
                 ],
               ),
             ),
@@ -73,4 +77,7 @@ class Description extends StatelessWidget {
       ),
     );
   }
+       getFormatedDate(_date) {
+          return formatDate(DateTime(_date), [dd, '/', mm, '/', yyyy]);
+       }
 }

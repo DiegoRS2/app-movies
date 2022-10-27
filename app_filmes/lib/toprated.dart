@@ -34,7 +34,7 @@ class TopRated extends StatelessWidget {
                                 // ignore: prefer_interpolation_to_compose_strings
                                 posterUrl: 'https://image.tmdb.org/t/p/w500'+topRated[index]['poster_path'],
                                 vote: topRated[index]['vote_average'].toString(),
-                                launch_on: topRated[index]['relase_date'] == null ? "teste": topRated[index]['relase_date'].toString())));
+                                launch_on: topRated[index]['release_date'] == null ? "teste": topRated[index]['release_date'])));
                   },
                   child: Container(
                     width: 140,

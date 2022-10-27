@@ -1,11 +1,13 @@
 import 'package:app_filmes/Util/text.dart';
-import 'package:app_filmes/checahem_page.dart';
 import 'package:app_filmes/toprated.dart';
 import 'package:app_filmes/trending.dart';
 import 'package:app_filmes/tv.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
+
+import 'carrossel.dart';
+import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -56,13 +58,15 @@ class _HomePage extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: Drawer(
+        backgroundColor: Colors.black,
         child: ListView(children: [
           UserAccountsDrawerHeader(
               accountName: Text(nome), accountEmail: Text(email)),
           ListTile(
             dense: true,
-            title: const Text('Sair'),
-            trailing: const Icon(Icons.exit_to_app),
+            title: const Modifica_texto(text:'Sair', color: Colors.white, size: null,),
+            
+            trailing: const Icon(Icons.exit_to_app, color: Colors.white,),
             onTap: () {
               sair();
             },
@@ -71,10 +75,11 @@ class _HomePage extends State<HomePage> {
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Modifica_texto(text: 'Movies', color: null, size: null,),
+        title: const Modifica_texto(text: 'Movies 🍿', color: null, size: null,),
       ),
       body:ListView(
         children: [
+          const Carrossel(),
           TopRated(topRated: topRatedMovies),
           //TV(tv: tv),
           TrendingMovies(trending: trendingMovies)
@@ -96,6 +101,6 @@ class _HomePage extends State<HomePage> {
   sair() async {
     await _firebaseAuth.signOut().then((user) => null);
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (builder) => const ChecagemPage()));
+        context, MaterialPageRoute(builder: (builder) => const LoginPage()));
   }
 }

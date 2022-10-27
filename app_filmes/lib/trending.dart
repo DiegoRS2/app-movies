@@ -35,7 +35,7 @@ class TrendingMovies extends StatelessWidget {
                                 // ignore: prefer_interpolation_to_compose_strings
                                 posterUrl: 'https://image.tmdb.org/t/p/w500'+trending[index]['poster_path'],
                                 vote: trending[index]['vote_average'].toString(),
-                                launch_on: trending[index]['relase_date'] == null ? "teste": trending[index]['relase_date'].toString())));
+                                launch_on: trending[index]['release_date'] == null ? "teste": trending[index]['release_date'])));
                   },
                   child: trending[index]['title'] != null
                       ? Container(
