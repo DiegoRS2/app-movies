@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
-import 'package:date_format/date_format.dart';
-
 import 'package:flutter/material.dart';
 
 import 'Util/text.dart';
@@ -12,23 +10,20 @@ class Description extends StatelessWidget {
   const Description({super.key, required this.name, required this.description, required this.bannerUrl, required this.posterUrl, required this.vote, required this.launch_on});
 
   @override
-  void initState() {
-      print(name);
-      print(description);
-      print(bannerUrl);
-      print(vote);
-    
+  void initState() {    
   }
 
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
-      backgroundColor: Colors.black,
-      //  appBar: AppBar(
-      //       title: const Text(''),
-      //       backgroundColor: Colors.transparent,
-      //       ),
+       appBar: AppBar(
+        elevation: 0.0,
+            title: const Text(''),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(360)),
+            backgroundColor: Colors.transparent,
+            ),
+     backgroundColor: Colors.black,
       body: Container(
         child: ListView(
           children: [
@@ -45,7 +40,7 @@ class Description extends StatelessWidget {
                   ),
                   Positioned(
                     bottom: 10,
-                    child: Modifica_texto(text: 'classificação média ⭐' + vote, color: Colors.white, size: 18))
+                    child: Modifica_texto(text: 'average rating ⭐' + vote, color: Colors.white, size: 18))
                 ],
               ),
             ),
@@ -55,7 +50,7 @@ class Description extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.only(left: 10),
-              child: Modifica_texto(text:'Data de lançamento - '+  launch_on, size: 14, color: Colors.white,),
+              child: Modifica_texto(text:'Release of date: '+  launch_on, size: 14, color: Colors.white,),
             ),
             Row(
               children: [
@@ -71,13 +66,14 @@ class Description extends StatelessWidget {
                   ),
                 )
               ],
-            )
-          ],
-        ),
+            ) 
+          ], 
+        ), 
       ),
     );
   }
        getFormatedDate(_date) {
-          return formatDate(DateTime(_date), [dd, '/', mm, '/', yyyy]);
+    
+          //return formatDate(DateTime(_date), [dd, '/', mm, '/', yyyy]);
        }
 }

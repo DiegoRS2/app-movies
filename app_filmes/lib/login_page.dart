@@ -29,7 +29,7 @@ class _LoginPage extends State<LoginPage> {
           children: [
             Container(
               padding: const EdgeInsets.only(left: 35, top: 130),
-              child: const Text("Bem vindo!", style: TextStyle(
+              child: const Text("Welcome!", style: TextStyle(
                 color: Colors.white,
                 fontSize: 33
               ),),
@@ -59,7 +59,7 @@ class _LoginPage extends State<LoginPage> {
                   decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
                     filled: true,
-                    hintText: 'Senha',
+                    hintText: 'Password',
                     border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10)),
                     suffixIcon: GestureDetector(
@@ -77,7 +77,7 @@ class _LoginPage extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Entrar', style: TextStyle(
+                    const Text('Log in', style: TextStyle(
                       fontSize: 27, fontWeight: FontWeight.w700, color: Color(0xff4c505b),
                     ),),
                     CircleAvatar(
@@ -101,7 +101,7 @@ class _LoginPage extends State<LoginPage> {
                   children: [
                     TextButton(onPressed: (){
                        Navigator.push(context, MaterialPageRoute(builder: ((context) => const CadastroPage())));
-                    }, child: const Text("Cadastrar-se", style: TextStyle(
+                    }, child: const Text("sign up", style: TextStyle(
                       decoration: TextDecoration.underline,
                       fontSize: 18,
                       color: Color(0xff4c505b)
@@ -140,6 +140,15 @@ class _LoginPage extends State<LoginPage> {
 
   login() async {
     try {
+      if(_emailController.text == "" || _emailController.text == null){
+        registraErros('Ops! preencha o campo de email para prosseguir');return;
+      }
+    if(_passwordController.text == "" || _passwordController.text == null)
+    {
+      registraErros('Ops! preencha o campo de senha para prosseguir');return;
+    }
+
+
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
               email: _emailController.text.trim(), password: _passwordController.text.trim());
@@ -149,7 +158,7 @@ class _LoginPage extends State<LoginPage> {
             context, MaterialPageRoute(builder: (builder) => const HomePage()));
       }
     } on FirebaseAuthException catch (e) {
-      print(e.code.toString());
+      print(e.code);
       if (e.code.toString() == "user-not-found") {
         registraErros('Ops! Usuário não encontrado');
       } else if (e.code.toString() == "invalid-email") {

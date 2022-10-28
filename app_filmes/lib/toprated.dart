@@ -13,7 +13,7 @@ class TopRated extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Modifica_texto(text: 'Séries', color: Colors.white, size: 26),
+        const Modifica_texto(text: 'Series', color: Colors.white, size: 26),
         const SizedBox(height: 10,),
         Container(
           height: 270,

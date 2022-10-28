@@ -12,7 +12,7 @@ class TrendingMovies extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Modifica_texto(text: 'Filmes', color: Colors.white, size: 26),
+        const Modifica_texto(text: 'films', color: Colors.white, size: 26),
         const SizedBox(
           height: 10,
         ),

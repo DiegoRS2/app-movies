@@ -1,4 +1,3 @@
-import 'package:app_filmes/checahem_page.dart';
 import 'package:app_filmes/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +36,7 @@ class _CadastroPageState extends State<CadastroPage> {
             Container(
               padding: const EdgeInsets.only(left: 35, top: 100),
               child: const Text(
-                "Cadastrar",
+                "Register",
                 style: TextStyle(color: Colors.white, fontSize: 33),
               ),
             ),
@@ -53,7 +52,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   decoration: InputDecoration(
                       fillColor: Colors.grey.shade100,
                       filled: true,
-                      hintText: 'Nome',
+                      hintText: 'Name',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
@@ -74,11 +73,11 @@ class _CadastroPageState extends State<CadastroPage> {
                 ),
                 TextField(
                   controller: _passwordController,
-                  obscureText:  _showPassword == false ? true: false,
+                  obscureText: _showPassword == false ? true : false,
                   decoration: InputDecoration(
                     fillColor: Colors.grey.shade100,
                     filled: true,
-                    hintText: 'Senha',
+                    hintText: 'Password',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
                     suffixIcon: GestureDetector(
@@ -103,7 +102,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Cadastrar',
+                      'sign up',
                       style: TextStyle(
                         fontSize: 27,
                         fontWeight: FontWeight.w700,
@@ -118,7 +117,6 @@ class _CadastroPageState extends State<CadastroPage> {
                         onPressed: () {
                           cadastra();
                         },
-                        
                         icon: const Icon(Icons.arrow_forward),
                       ),
                     )
@@ -157,6 +155,15 @@ class _CadastroPageState extends State<CadastroPage> {
 
   cadastra() async {
     try {
+      if(_nomeController.text == "" || _nomeController.text == null){
+        registraErros('Ops! preencha o campo de nome para prosseguir');return;
+      }
+      if (_emailController.text == "" || _emailController.text == null) {
+        registraErros('Ops! preencha o campo de email para prosseguir');return;
+      }
+      if (_passwordController.text == "" || _passwordController.text == null) {
+        registraErros('Ops! preencha o campo de senha para prosseguir');return;
+      }
       UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
